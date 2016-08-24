@@ -1,0 +1,95 @@
+<!DOCTYPE html >
+<html>
+  <head>
+    <title>Find color</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <script type="text/javascript" src="http://localhost:8080/Find_square/source/js/jquery.min.js"></script>
+      </head>
+  <body>
+    <div id="square_game"></div>
+  </body>
+   <script>
+   $(function(){
+	var mydate = new Date();
+	var start_minutes=mydate.getMinutes();
+	var start_seconds=mydate.getSeconds();
+ 	var number = 2;
+	var color = "#FF0000";
+	var find_color = "#F70000";
+	$(function game(){
+		var wh = 300/number;
+		var randomx = Math.round(Math.random()*(number-1));
+		var randomy = Math.round(Math.random()*(number-1));
+		for(var i=0;i<number;i++){
+			for(var j=0;j<number;j++){
+				//alert("<div id='x_"+i+"y_"+j+"'"+" style='display:inline-block'"+"></div>");
+				$("#square_game").append("<div id='x_"+i+"y_"+j+"' style='display:inline-block'"+"></div>");
+			}
+			$("#square_game").append("<br>");
+		}
+		
+		$("#square_game").append("<input id='blue' type='button' class='button btn' value='蓝色'/>");
+		$("#square_game").append("<input id='green' type='button' class='button btn' value='绿色'/>");
+		$("#square_game").append("<input id='red' type='button' class='button btn' value='红色'/>");
+		
+		      $("#square_game").children("input").click(function(){
+		    	 if("blue"==$(this).attr("id")){
+		    		 color = "#0000FF";
+		    		 find_color = "#0000F7";
+		    	 }
+		    	 if("green"==$(this).attr("id")){
+		    		 color = "#00FF00";
+		    		 find_color = "#00F700";
+		    	 }
+		    	 if("red"==$(this).attr("id")){
+		    		 color = "#FF0000";
+		    		 find_color = "#F70000";
+		    	 } 
+		    	 $("#square_game").empty();
+		    	 number = 2;
+		    	 game();
+		    	 
+		     }); 
+		
+			 $("#square_game > div").css({
+			'background-color':color,
+			'width': wh+'px',
+			'height':wh+'px',
+			'margin':'0px 0px 0px 1px'
+		});	 
+			 
+			 $("#x_"+randomx+"y_"+randomy).css('background-color',find_color)
+			 .click(function(){
+				 $("#square_game").empty();
+				 number+=2;
+				 if(number > 12){
+					 var mydate2 = new Date();
+					 var use_minutes;
+					 var use_seconds;
+					 var end_minutes=mydate2.getMinutes();
+					 var end_seconds=mydate2.getSeconds();
+					 use_minutes = end_minutes >= start_minutes?(end_minutes-start_minutes)
+							 :(use_minutes = 60-start_minutes+end_minutes);
+					/*  if(end_minutes >= start_minutes){
+						 use_minutes = end_minutes-start_minutes;
+					 }else{
+						 use_minutes = 60-start_minutes+end_minutes;
+					 } */
+					 if(use_minutes>5){
+						 alert("花了这么久的时间，您是睡着了吗？请再试一次吧!");
+					 }else{
+						 use_seconds = end_seconds >= start_seconds?(end_seconds-start_seconds)
+								 :(use_seconds = 60-start_seconds+end_seconds);
+						 alert("你的成绩为:"
+								 +use_minutes+"分"+use_seconds+"秒");
+					 }
+				 }else{
+					 game();
+				 }
+			 });
+	});
+	
+	
+});
+    </script>
+</html>
