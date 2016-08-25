@@ -1,191 +1,98 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<!-- <meta name="viewport" content="width=640,target-densitydpi=320,user-scalable=no"> -->
-<script type="text/javascript" src="source/js/jquery.min.js"></script>
-<title>Find different</title>
-<style type="text/css" >
-body{
-margin:0;
-}
+    <meta charset="UTF-8">
+    <!-- <meta name="viewport" content="width=640,target-densitydpi=320,user-scalable=no"> -->
+    <link rel="stylesheet" type="text/css" href="source/css/square.css"/>
+    <script type="text/javascript" src="source/js/jquery.min.js"></script>
+    <script src="source/js/square.js"></script>
+    <title>Find different</title>
 
-section{
-position:relative;
-width:640px;
-height:1251px;
-} 
-
-#square_game{
-width:380px;
-height:350px;
-position:absolute;
-left:110px;
-top:330px;
-text-align:center;
-}
-
-#btn_blue{
-position:absolute;
-left:250px;
-top:200px;
-}
-
-#btn_red{
-position:absolute;
-left:60px;
-top:200px;
-}
-
-
-#btn_green{
-position:absolute;
-left:430px;
-top:200px;
-
-}
-
-#btn_tryagain{
-position:absolute;
-left:225px;
-top:680px;
-text-align:center;
-}
-</style>
 </head>
 <body>
 <section style='background:url("source/image/background.jpg") no-repeat'>
-<img src="source/image/blue_btn.png" id="btn_blue">
-<img src="source/image/green_btn.png" id="btn_green">
-<img src="source/image/red_btn.png" id="btn_red">
-<img src="source/image/btn_tryagain.jpg" id="btn_tryagain">
-<div id="square_game">
-</div>
+    <img src="source/image/btn_tryagain.jpg" id="btn_tryagain">
+    <img src="source/image/start.png" class="start_btn" id="start_btn" alt="">
+    <div class="time"></div>
+    <div id="square_game" class="lv1">
+    </div>
 </section>
 </body>
 <script type="text/javascript">
-$(function(){
-	var mydate = new Date();
-	var start_minutes=mydate.getMinutes();
-	var start_seconds=mydate.getSeconds();
- 	var number = 2;
-	var color = "#FF0000";
-	var find_color = "#E50000";
-	$(function game(){
-		var wh = 300/number;
-		var randomx = Math.round(Math.random()*(number-1));
-		var randomy = Math.round(Math.random()*(number-1));
-		for(var i=0;i<number;i++){
-			for(var j=0;j<number;j++){
-				//alert("<div id='x_"+i+"y_"+j+"'"+" style='display:inline-block'"+"></div>");
-				$("#square_game").append("<div id='x_"+i+"y_"+j+"' style='display:inline-block'"+"></div>");
-			}
-			$("#square_game").append("<br>");
-		}
-		
-	/* 	$("#square_game").append("<input id='blue' type='button' class='button btn' value='蓝色'/>");
-		$("#square_game").append("<input id='green' type='button' class='button btn' value='绿色'/>");
-		$("#square_game").append("<input id='red' type='button' class='button btn' value='红色'/>"); */
-		
-		  /*     $("#square_game").children("input").click(function(){
-		    	 if("blue"==$(this).attr("id")){
-		    		 color = "#0000FF";
-		    		 find_color = "#0000F5";
-		    	 }
-		    	 if("green"==$(this).attr("id")){
-		    		 color = "#00FF00";
-		    		 find_color = "#00F500";
-		    	 }
-		    	 if("red"==$(this).attr("id")){
-		    		 color = "#FF0000";
-		    		 find_color = "#F50000";
-		    	 } 
-		    	 $("#square_game").empty();
-		    	 number = 2;
-		    	 game(); 
-		    	   }); 
-		    	 */
-		    	 
-		    	 $("#btn_tryagain").click(function(){
-		    	 $("#square_game").empty();
-		    	 var now = new Date();
-	    		 start_minutes=now.getMinutes();
-	             start_seconds=now.getSeconds();
-		    	 number = 2;
-		    	 game();  
-		    	 });
-		    	 $("#btn_blue").click(function(){ 
-		         color = "#0000FF";
-	    		 find_color = "#0000E5";
-	    		 var now = new Date();
-	    		 start_minutes=now.getMinutes();
-	             start_seconds=now.getSeconds();
-	    		 $("#square_game").empty();
-		    	 number = 2;
-		    	 game();  
-		    	 });
-		    	 
-		    	 $("#btn_green").click(function(){ 
-		    		 color = "#00FF00";
-		    		 find_color = "#00F000";
-		    		  var now = new Date();
-	    		 start_minutes=now.getMinutes();
-	             start_seconds=now.getSeconds();
-	    		 $("#square_game").empty();
-		    	 number = 2;
-		    	 game();  
-		    	 });
-		    	 
-		    	 $("#btn_red").click(function(){ 
-		    		 color = "#FF0000";
-		    		 find_color = "#E50000";
-		    		  var now = new Date();
-	    		 start_minutes=now.getMinutes();
-	             start_seconds=now.getSeconds();
-	    		 $("#square_game").empty();
-		    	 number = 2;
-		    	 game();  
-		    	 });
-		
-			 $("#square_game > div").css({
-			'background-color':color,
-			'width': wh+'px',
-			'height':wh+'px',
-			'margin':'0px 5px 1px 0px'
-		});	 
-			 
-			 $("#x_"+randomx+"y_"+randomy).css('background-color',find_color)
-			 .click(function(){
-				 $("#square_game").empty();
-				 number+=2;
-				 if(number > 12){
-					 var mydate2 = new Date();
-					 var use_minutes;
-					 var use_seconds;
-					 var end_minutes=mydate2.getMinutes();
-					 var end_seconds=mydate2.getSeconds();
-					 use_minutes = end_minutes >= start_minutes?(end_minutes-start_minutes)
-							 :(use_minutes = 60-start_minutes+end_minutes);
-					 if(use_minutes>5){
-						 alert("花了这么久的时间，您是睡着了吗？请再试一次吧!");
-						 number = 2;
-						 game();
-					 }else{
-						 use_seconds = end_seconds >= start_seconds?(end_seconds-start_seconds)
-								 :(use_seconds = 60-start_seconds+end_seconds);
-						 alert("你的成绩为:"
-								 +use_minutes+"分"+use_seconds+"秒");
-						 number = 2;
-						 game();
-					 }
-				 }else{
-					 game();
-				 }
-			 });
-	});
-	
-	
-});
+    var lv = 1;
+    $(function () {
+        var mydate = new Date();
+        var start_minutes = mydate.getMinutes();
+        var start_seconds = mydate.getSeconds();
+        var number = 2;
+        var color = "#FF0000";
+        var find_color = "#E50000";
+        $(function game() {
+            var wh = 300 / number;
+            var randomx = Math.round(Math.random() * (number - 1));
+            var randomy = Math.round(Math.random() * (number - 1));
+            for (var i = 0; i < number; i++) {
+                for (var j = 0; j < number; j++) {
+                    //alert("<div id='x_"+i+"y_"+j+"'"+" style='display:inline-block'"+"></div>");
+                    $("#square_game").append("<span id='x_" + i + "y_" + j + "' style='display:inline-block'" + "></span>");
+                }
+                $("#square_game").append("<br>");
+            }
+
+            $("#btn_tryagain").click(function () {
+                $("#square_game").empty();
+                var now = new Date();
+                start_minutes = now.getMinutes();
+                start_seconds = now.getSeconds();
+                number = 2;
+                game();
+            });
+
+            color = getColor(255);
+
+            $("#square_game span").css("background-color", color[1]);
+
+            find_color = getLvColor(color[0], (10 - lv));
+
+            $("#x_" + randomx + "y_" + randomy).css('background-color', find_color[1])
+                    .click(function () {
+                        if(lv < 8) {
+                            lv = lv + 1;
+                            $("#square_game").attr("class", "lv" + lv);
+                        }
+                        $("#square_game").empty();
+                        if(number <= 8) {
+                            number += 1;
+                        }
+//                        if (number > 12) {
+//                            var mydate2 = new Date();
+//                            var use_minutes;
+//                            var use_seconds;
+//                            var end_minutes = mydate2.getMinutes();
+//                            var end_seconds = mydate2.getSeconds();
+//                            use_minutes = end_minutes >= start_minutes ? (end_minutes - start_minutes)
+//                                    : (use_minutes = 60 - start_minutes + end_minutes);
+//                            if (use_minutes > 5) {
+//                                alert("花了这么久的时间，您是睡着了吗？请再试一次吧!");
+//                                number = 2;
+//                                game();
+//                            } else {
+//                                use_seconds = end_seconds >= start_seconds ? (end_seconds - start_seconds)
+//                                        : (use_seconds = 60 - start_seconds + end_seconds);
+//                                alert("你的成绩为:"
+//                                        + use_minutes + "分" + use_seconds + "秒");
+//                                number = 2;
+//                                game();
+//                            }
+//                        } else {
+//                            game();
+//                        }
+                        game();
+                    });
+        });
+
+
+    });
 
 </script>
 <script type="text/javascript" src="source/js/jquery.min.js"></script>

@@ -1,0 +1,119 @@
+body {
+    margin: 0;
+}
+
+section {
+    position: absolute;
+    width: 640px;
+    height: 1251px;
+    top: 0;
+    left: 0;
+
+}
+
+.time {
+    width: 100px;
+    height: 30px;
+    top: 650px;
+    left: 270px;
+    color: orange;
+    position: absolute;
+    font-size: 20px;
+    text-align: center;
+}
+
+#btn_blue {
+    position: absolute;
+    left: 250px;
+    top: 200px;
+}
+
+#btn_red {
+    position: absolute;
+    left: 60px;
+    top: 200px;
+}
+
+#btn_green {
+    position: absolute;
+    left: 430px;
+    top: 200px;
+
+}
+
+.start_btn {
+    position: absolute;
+    left: 270px;
+    top: 680px;
+}
+
+#btn_tryagain {
+    position: absolute;
+    left: 225px;
+    top: 680px;
+    text-align: center;
+    display: none;
+}
+
+
+#square_game {
+    position: absolute;
+    margin: 150px auto;
+    width: 400px;
+    height: 400px;
+    top: 50px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 10px;
+}
+
+#square_game span{
+    display: block;
+    float: left;
+    border-radius: 10px;
+    cursor: pointer;
+    border: 5px solid #ddd;
+    box-sizing: border-box;
+}
+
+#square_game.lv1 span{
+    width: 50%;
+    height: 50%;
+}
+#square_game.lv2 span{
+    width: 33.33%;
+    height: 33.33%;
+}
+#square_game.lv3 span{
+    width: 25%;
+    height: 25%;
+}
+#square_game.lv4 span{
+    width: 20%;
+    height: 20%;
+    border-width: 3px;
+}
+#square_game.lv5 span{
+    width: 16.666%;
+    height: 16.666%;
+    border-width: 3px;
+}
+#square_game.lv6 span{
+    width: 14.28%;
+    height: 14.28%;
+    border-width: 3px;
+}
+#square_game.lv7 span{
+    width: 12.5%;
+    height: 12.5%;
+    border-width: 3px;
+}
+#square_game.lv8 span{
+    width: 11.111%;
+    height: 11.111%;
+    border-width: 3px;
+}
+#square_game span img{
+    width: 100%;
+}
